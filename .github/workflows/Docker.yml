@@ -19,3 +19,12 @@ jobs:
       with:
         username: ${{secrets.USER_DOCKERHUB}}
         password: ${{secrets.PASSWD_DOCKERHUB}}
+        
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v4.1.1
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: fabrioceras/go_ci:${{github.ref_name}}
+   
